@@ -13,11 +13,6 @@ include('accounts.php');
 include('todos.php');
 
 
-// $dsn = 'mysql:host=sql1.njit.edu; dbname=mcr35';
-// $username = 'mcr35';
-// $pw = 'diehard53';
-
-// $dbo = dbConn::getConnection();
 $records = accounts::findAll();
 print_r($records);
 

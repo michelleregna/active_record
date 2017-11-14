@@ -2,9 +2,6 @@
 <?php
 
 class dbConn{
-	// $dsn = 'mysql:host=sql1.njit.edu;dbname=mcr35';
-	// $username = 'mcr35';
-	// $pw = 'diehard53';
     //variable to hold connection object.
     protected static $db;
     //private construct - class cannot be instatiated externally.
