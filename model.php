@@ -14,13 +14,17 @@ class model {
         $statement->execute();
         // $tableName = get_called_class();
         // $array = get_object_vars($this);
-        // $columnString = implode(',', $array);
+
+        // this gets the column names and separates them with a comma so they can be used in the INSERTquery
+        $columnString = implode(',', $array);
+        
         // $valueString = ":".implode(',:', $array);
         // echo "INSERT INTO $tableName (" . $columnString . ") VALUES (" . $valueString . ")</br>";
         // echo 'I just saved record: ' . $this->id;
 
 	}
 
+    // don't you need to pass this values? it already has the column names with $columnString 
 	private function insert() {
 		$sql = "INSERT INTO $tableName (" . $columnString . ") VALUES (" . $valueString . ")</br>";
         return $sql;
