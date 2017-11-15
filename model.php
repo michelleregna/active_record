@@ -9,9 +9,9 @@ class model {
             $sql = $this->update();
         }
 
-        // $db = dbConn::getConnection();
-        // $statement = $db->prepare($sql);
-        // $statement->execute();
+        $db = dbConn::getConnection();
+        $statement = $db->prepare($sql);
+        $statement->execute();
         // $tableName = get_called_class();
         // $array = get_object_vars($this);
         // $columnString = implode(',', $array);
@@ -22,13 +22,15 @@ class model {
 	}
 
 	private function insert() {
-		$sql = 'sometthing';
+		$sql = "INSERT INTO $tableName (" . $columnString . ") VALUES (" . $valueString . ")</br>";
         return $sql;
+        echo 'I just inserted record' . $this->id;
+
 
 	}
 
 	private function update() {
-		$sql = 'sometthing';
+		$sql = "UPDATE $tableName SET WHERE";
         return $sql;
         echo 'I just updated record' . $this->id;
 
