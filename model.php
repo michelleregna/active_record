@@ -35,7 +35,7 @@ class model {
 	}
 
 	public function delete($tableName, $id) {
-        $sql = "DELETE FROM $tableName WHERE user_id=" .$id;
+        $sql = "DELETE FROM $tableName WHERE user_id=" . $this->$id;
         $db = dbConn::getConnection();
         $statement = $db->prepare($sql);
         $statement->execute();
@@ -47,11 +47,3 @@ class model {
 }
 
 ?>
-
-<!-- $query = 'SELECT * FROM accounts WHERE id < 6';
-$statement = $db->prepare($query);
-$statement->execute();
-$accounts = $statement->fetchAll();
-$statement->closeCursor();
-$num_of_accounts = $statement->rowCount();
-echo "Number of records in result: $num_of_accounts"; -->
