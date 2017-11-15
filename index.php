@@ -14,7 +14,14 @@ include('todos.php');
 
 
 $records = accounts::findAll();
+echo'<pre>';
 print_r($records);
+echo '</pre>';
+
+$records = todos::findOne(3);
+echo '<pre>';
+print_r($records);
+echo '</pre>';
 
 // $account = new account();
 // $account->load('1');
