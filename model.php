@@ -35,8 +35,9 @@ class model {
 	}
 
 	public function delete($tableName, $id) {
-        $sql = "DELETE FROM $tableName WHERE user_id=" . $this->$id;
+        
         $db = dbConn::getConnection();
+        $sql = "DELETE FROM $tableName WHERE user_id=" . $this->$id;
         $statement = $db->prepare($sql);
         $statement->execute();
 
