@@ -49,19 +49,36 @@ class main {
 		$records = accounts::findAll();
 		echo htmlTable::buildTable($records); 
 
-		// insert a record
-		// $html .= '<h2>Insert Record</h2>'
-		$record = new account();
-		$record->id=15;
-		$record->email='finn@aol.com';
-		$record->fname='Finnegan';
-		$record->lname='Regna';
-		$record->birthday=10242010;
-		$record->gender='Male';
-		$record->password='woof';
-		$record->insert();
-		$records = accounts::findAll();
+		// // insert a record
+		// // $html .= '<h2>Insert Record</h2>'
+		// $record = new account();
+		// $record->id=15;
+		// $record->email='finn@aol.com';
+		// $record->fname='Finnegan';
+		// $record->lname='Regna';
+		// $record->birthday=10242010;
+		// $record->gender='Male';
+		// $record->password='woof';
+		// $record->insert();
+		// $records = accounts::findAll();
+		// echo htmlTable::buildTable($records);
+
+		// select all todo records
+		// $html .= '<h2>Select All</h2>';
+		$records = todos::findAll();
 		echo htmlTable::buildTable($records);
+
+		// select one todo record
+		// $html .= '<h2>Select All</h2>';
+		$record = todos::findOne(4);
+		echo htmlTable::buildTableWithOneRecord($record);
+
+		// delete a record
+		// $html .= '<h2>Delete Record</h2>'
+		$record->delete('todos', 5);
+		$records = todos::findAll();
+		echo htmlTable::buildTable($records); 
+
 
 	}
 
