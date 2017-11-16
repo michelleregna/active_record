@@ -1,7 +1,7 @@
 
 <?php
 
-class dbConn{
+class database{
     //variable to hold connection object.
     protected static $db;
     //private construct - class cannot be instatiated externally.
@@ -21,7 +21,7 @@ class dbConn{
         //Guarantees single instance, if no connection object exists then create one.
         if (!self::$db) {
             //new connection object.
-            new dbConn();
+            new database();
         }
         //return connection.
         return self::$db;

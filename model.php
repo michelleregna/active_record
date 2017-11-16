@@ -9,7 +9,7 @@ class model {
             $sql = $this->update();
         }
 
-        $db = dbConn::getConnection();
+        $db = database::getConnection();
         $statement = $db->prepare($sql);
         $statement->execute();
         // $tableName = get_called_class();
@@ -42,7 +42,7 @@ class model {
 
 	public function delete($tableName, $id) {
         
-        $db = dbConn::getConnection();
+        $db = database::getConnection();
         $sql = "DELETE FROM $tableName WHERE user_id=" . $this->$id;
         $statement = $db->prepare($sql);
         $statement->execute();

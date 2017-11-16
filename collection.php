@@ -10,7 +10,7 @@ class collection {
 	}
 
 	static public function findAll() {
-    	$db = dbConn::getConnection();
+    	$db = database::getConnection();
 		$tableName = get_called_class();
 		$sql = 'SELECT * FROM ' . $tableName;
 		$statement = $db->prepare($sql);
@@ -23,7 +23,7 @@ class collection {
 	}
 
 	static public function findOne($id) {
-		$db = dbConn::getConnection();
+		$db = database::getConnection();
 		$tableName = get_called_class();
         $sql = 'SELECT * FROM ' . $tableName . ' WHERE id =' . $id;
         $statement = $db->prepare($sql);
