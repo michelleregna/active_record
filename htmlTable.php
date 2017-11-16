@@ -23,7 +23,7 @@ class htmlTable extends page {
      		$table .= "</tr>\n";
 		}
 
-		$table .= "</table>";
+		$table .= "</table><br>";
 		return $table;
 
 	}
@@ -45,7 +45,7 @@ class htmlTable extends page {
      	}
      	
      	$table .= "</tr>\n";
-		$table .= "</table>";
+		$table .= "</table><br>";
 		return $table;
 	}
 }

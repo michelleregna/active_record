@@ -40,8 +40,28 @@ class main {
 
 		// select one record
 		// $html .= '<h2>Select All</h2>';
-		$record = accounts::findOne(8);
+		$record = accounts::findOne(13);
 		echo htmlTable::buildTableWithOneRecord($record);
+
+		// delete a record
+		// $html .= '<h2>Delete Record</h2>'
+		$record->delete('accounts', 10);
+		$records = accounts::findAll();
+		echo htmlTable::buildTable($records); 
+
+		// insert a record
+		// $html .= '<h2>Insert Record</h2>'
+		$record = new account();
+		$record->id=15;
+		$record->email='finn@aol.com';
+		$record->fname='Finnegan';
+		$record->lname='Regna';
+		$record->birthday=10242010;
+		$record->gender='Male';
+		$record->password='woof';
+		$record->insert();
+		$records = accounts::findAll();
+		echo htmlTable::buildTable($records);
 
 	}
 
