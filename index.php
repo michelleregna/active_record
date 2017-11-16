@@ -17,26 +17,37 @@ spl_autoload_register(array('Manage', 'autoload'));
 $obj = new main();
 
 class main {
-	private $html;
+	public function __construct() {
+	
+		// protected $html;
+	
+		// Call static methods 
+		// $records = accounts::findAll();
+		// echo'<pre>';
+		// print_r($records);
+		// echo '</pre>';
 
-public function __construct() {
-// <link rel="stylesheet" type="text/css" href="style.css" />
+		// $records = todos::findOne(3);
+		// echo '<pre>';
+		// print_r($records);
+		// echo '</pre>';
+		// $html .= '<h1>Todos/h1>';
 
+		// select all
+		// $html .= '<h2>Select All</h2>';
+		$records = accounts::findAll();
+		echo htmlTable::buildTable($records);
 
-$records = accounts::findAll();
-echo'<pre>';
-print_r($records);
-echo '</pre>';
-
-$records = todos::findOne(3);
-echo '<pre>';
-print_r($records);
-echo '</pre>';
-
-$records = accounts::findAll();
-echo htmlTable::buildTable($records);
+		// select one record
+		// $html .= '<h2>Select All</h2>';
+		$record = accounts::findOne(8);
+		echo htmlTable::buildTableWithOneRecord($record);
 
 	}
+
+	public function __destruct() {
+	}
+
 }
 
 
