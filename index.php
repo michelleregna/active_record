@@ -4,14 +4,6 @@
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
-// include('database.php');
-// include('model.php');
-// include('account.php');
-// include('todo.php');
-// include('collection.php');
-// include('accounts.php');
-// include('todos.php');
-// include('htmlTable.php');
 
 //Autuloader class
 class Manage {
@@ -22,7 +14,12 @@ class Manage {
 }
 spl_autoload_register(array('Manage', 'autoload'));
 
+$obj = new main();
 
+class main {
+	private $html;
+
+public function __construct() {
 // <link rel="stylesheet" type="text/css" href="style.css" />
 
 
@@ -38,6 +35,9 @@ echo '</pre>';
 
 $records = accounts::findAll();
 echo htmlTable::buildTable($records);
+
+	}
+}
 
 
 // $account = new account();
