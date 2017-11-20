@@ -53,7 +53,6 @@ public function save_todo($id = null, $owneremail, $ownerid, $createddate, $dued
 
     $results->execute();
 
-
 }
 
 public function delete($tableName, $id) {
