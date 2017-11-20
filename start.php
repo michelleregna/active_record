@@ -3,55 +3,55 @@
 class start extends page {
 	public function get() {
 				// select all
-		$this->html .= '<h2>Select All</h2>';
+		$this->html .= '<h2>Select All Accounts</h2>';
 		$records = accounts::findAll();
-		echo htmlTable::buildTable($records);
+		$this->html .= htmlTable::buildTable($records);
 
 		// select one record
-		// $this->html .= '<h2>Select All</h2>';
+		$this->html .= '<h2>Select One Account</h2>';
 		$record = accounts::findOne(13);
-		echo htmlTable::buildTableWithOneRecord($record);
+		$this->html .= htmlTable::buildTableWithOneRecord($record);
 
 		// delete a record
-		// $html .= '<h2>Delete Record</h2>'
+		$this->html .= '<h2>Delete Account 10</h2>';
 		$record->delete('accounts', 10);
 		$records = accounts::findAll();
-		echo htmlTable::buildTable($records); 
+		$this->html .= htmlTable::buildTable($records); 
 
 		// insert a record
-		// $html .= '<h2>Insert Record</h2>'
+		$this->html .= '<h2>Insert Record</h2>';
 		$record = new account();
-		$record->id=15;
-		$record->email='finn@aol.com';
-		$record->fname='Finnegan';
-		$record->lname='Regna';
-		$record->birthday=10242010;
-		$record->gender='Male';
-		$record->password='woof';
-		echo "<h1>working</h1>";
-		$record->save();
+		$record->save_account('','finn@aol.com', 'Finnegan', 'Regna', '7324078497', '10242010', 'male', 'woof');
 		$records = accounts::findAll();
-		echo htmlTable::buildTable($records);
+		$this->html .= htmlTable::buildTable($records);
+
+		// update a record
+		$this->html .= '<h2>Update Account Record 9</h2>';
+		$record->save_account('9','test@gmail.com', 'this', 'is', 'a', 'test', 'test', 'test');
+		$records = accounts::findAll();
+		$this->html .= htmlTable::buildTable($records);
 
 		// select all todo records
-		// $this->html .= '<h2>Select All</h2>';
+		$this->html .= '<h2>Select All Todos</h2>';
 		$records = todos::findAll();
-		echo htmlTable::buildTable($records);
+		$this->html .= htmlTable::buildTable($records);
 
 		// select one todo record
-		// $this->html .= '<h2>Select All</h2>';
+		$this->html .= '<h2>Select One Todo</h2>';
 		$record = todos::findOne(4);
-		echo htmlTable::buildTableWithOneRecord($record);
+		$this->html .= htmlTable::buildTableWithOneRecord($record);
 
 		// delete a record
-		// $this->html .= '<h2>Delete Record</h2>'
+		$this->html .= '<h2>Delete Todo 5</h2>';
 		$record->delete('todos', 5);
 		$records = todos::findAll();
-		echo htmlTable::buildTable($records); 
+		$this->html .= htmlTable::buildTable($records); 
 
-
-	
 		
+	}
+
+	public function __destruct() {
+		stringFunctions::printThis($this->html);
 	}
 }
 

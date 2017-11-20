@@ -2,95 +2,35 @@
 
 class model {
 	protected $tableName;
-    protected $array;
-    protected $columnString;
-    protected $valueString;
 
 
-    public function __construct() {
+public function save_account($id = null, $email, $fname, $lname, $phone, $birthday, $gender, $password) {
 
-        
+    if ($id) {
+        $sql = 'UPDATE accounts SET email = ?, fname = ?, lname = ?, phone = ?, birthday = ?, gender = ?, password = ? WHERE id = ?';
+    } else {
+        $sql = 'INSERT INTO accounts(email, fname, lname, phone, birthday, gender, password) VALUES(?, ?, ?, ?, ?, ?, ?)';
+    }
 
-        echo $columnString;
-}
+    $db = database::getConnection();
+    $results = $db->prepare($sql);
+    $results->bindValue(1, $email, PDO::PARAM_STR);
+    $results->bindValue(2, $fname, PDO::PARAM_STR);
+    $results->bindValue(3, $lname, PDO::PARAM_STR);
+    $results->bindValue(4, $phone, PDO::PARAM_STR);
+    $results->bindValue(5, $birthday, PDO::PARAM_STR);
+    $results->bindValue(6, $gender, PDO::PARAM_STR);
+    $results->bindValue(7, $password, PDO::PARAM_STR);
 
-	public function save() {
-		if ($this->id = 15) {
-            $sql = $this->insert();
-        } else {
-            $sql = $this->update();
+    if ($id) {
+            $results->bindValue(8, $id, PDO::PARAM_INT);
         }
 
-        echo $sql;
-        $db = database::getConnection();
+    $results->execute();
 
-        $statement = $db->prepare($sql);
-        $statement->execute();
-    
+}
 
-        echo 'I just saved record: ' . $this->id;
-
-    }
-        // this gets the column names and separates them with a comma so they can be used in the INSERT query
-      
-        // echo "INSERT INTO $tableName (" . $columnString . ") VALUES (" . $valueString . ")</br>";
-        // echo 'I just saved record: ' . $this->id;
-
-	// }
-
-    // don't you need to pass this values? it already has the column names with $columnString 
-	public function insert() {
-
-        $tableName = get_called_class();
-
-        $array = get_object_vars($this);
-        $columnString = implode(',', $array);
-        $valueString = ":".implode(',:', $array);
-
-        $sql = "INSERT INTO $tableName (" . $columnString . ") VALUES (" . $valueString . ")</br>";
-
-        return $sql;
-
-
-
-
-        // 
-
-        // foreach($array) as $key => $value) {
-        //     $statement->bindValues(":value", $this->$value);
-
-                // $keys = "";
-                // $values = "";
-                // $objVars = get_object_vars($this);
-                // foreach($objVars as $key=>$value) {
-                //     if($key == "id" || $key == "table") {
-                //         continue;
-                //     }
-
-                //     $keys .= $this->$key;
-                //     $values .= $this->$value;
-                // }
-
-                // $columnString = substr($keys, 0, -1);
-                // $valueString =  substr($values, 0, -1);
-                // $sql = "INSERT INTO $tableName (" . $columnString . ") VALUES (" . $valueString . ")</br>";
-                // $statement = $db->prepare($sql);
-                // $statement->execute();
-    }
-       
-       
-	
-        // return $sql;
-
-	private function update() {
-		// $sql = "UPDATE $tableName SET WHERE";
-  //       return $sql;
-        echo 'hi';
-      
-
-	}
-
-	public function delete($tableName, $id) {
+public function delete($tableName, $id) {
         
         $db = database::getConnection();
         $sql = "DELETE FROM $tableName WHERE id=" . $id;
