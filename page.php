@@ -1,5 +1,7 @@
 <?php
 abstract class page {
+	protected $html;
+	
 	public function __construct() {
 		// Creates the heading on the webpage
 		$this->html .= '<html>';

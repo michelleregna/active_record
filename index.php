@@ -18,71 +18,26 @@ $obj = new main();
 
 class main {
 	public function __construct() {
+
+		// Set default page request
+		$pageRequest = 'uploadForm';
+		// Check for parameters in URL
+		if(isset($_REQUEST['page'])) {
+			// Load the page being requested into pageRequest
+			$pageRequest = $_REQUEST['page'];
+		}
+		// Instantiate the class being requested
+		$page = new $pageRequest;
+		if($_SERVER['REQUEST_METHOD'] == 'GET') {
+			$page->get();
+		} else {
+			$page->post();
+		}
 	
-		// protected $html;
-	
-		// Call static methods 
-		// $records = accounts::findAll();
-		// echo'<pre>';
-		// print_r($records);
-		// echo '</pre>';
-
-		// $records = todos::findOne(3);
-		// echo '<pre>';
-		// print_r($records);
-		// echo '</pre>';
-		// $html .= '<h1>Todos/h1>';
-
-		// select all
-		// $html .= '<h2>Select All</h2>';
-		$records = accounts::findAll();
-		echo htmlTable::buildTable($records);
-
-		// select one record
-		// $html .= '<h2>Select All</h2>';
-		$record = accounts::findOne(13);
-		echo htmlTable::buildTableWithOneRecord($record);
-
-		// delete a record
-		// $html .= '<h2>Delete Record</h2>'
-		$record->delete('accounts', 10);
-		$records = accounts::findAll();
-		echo htmlTable::buildTable($records); 
-
-		// // insert a record
-		// // $html .= '<h2>Insert Record</h2>'
-		// $record = new account();
-		// $record->id=15;
-		// $record->email='finn@aol.com';
-		// $record->fname='Finnegan';
-		// $record->lname='Regna';
-		// $record->birthday=10242010;
-		// $record->gender='Male';
-		// $record->password='woof';
-		// $record->insert();
-		// $records = accounts::findAll();
-		// echo htmlTable::buildTable($records);
-
-		// select all todo records
-		// $html .= '<h2>Select All</h2>';
-		$records = todos::findAll();
-		echo htmlTable::buildTable($records);
-
-		// select one todo record
-		// $html .= '<h2>Select All</h2>';
-		$record = todos::findOne(4);
-		echo htmlTable::buildTableWithOneRecord($record);
-
-		// delete a record
-		// $html .= '<h2>Delete Record</h2>'
-		$record->delete('todos', 5);
-		$records = todos::findAll();
-		echo htmlTable::buildTable($records); 
-
-
 	}
 
 	public function __destruct() {
+	
 	}
 
 }
